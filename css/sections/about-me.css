@@ -30,7 +30,7 @@
   border-radius:50%;
 }
 
-/* Responsive */
+/* Responsive (phản hồi giao diện) */
 @media (max-width: 980px){
   .about-hero{ gap:28px; }
   .about-hero__media{ width:320px; flex-basis:320px; }

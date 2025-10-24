@@ -1,0 +1,111 @@
+/* PHẦN THƯ VIỆN ẢNH */
+#gallery {
+  /* cho phép nền chủ đề hiển thị xuyên qua */
+  background-color: transparent;
+  padding: 60px 0;
+}
+
+.gallery-section {
+  text-align: center;
+}
+
+.section__title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+/* Gallery container có thể cuộn ngang */
+.gallery-grid {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 10px 5px;
+  scrollbar-width: thin;
+  /* Dành cho Firefox */
+  scrollbar-color: #999 #f0f0f0;
+  /* Dành cho Firefox */
+}
+
+/* Tùy chỉnh thanh cuộn (Chrome, Edge, Safari) */
+.gallery-grid::-webkit-scrollbar {
+  height: 10px;
+}
+
+.gallery-grid::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 5px;
+}
+
+.gallery-grid::-webkit-scrollbar-thumb {
+  background: #999;
+  border-radius: 5px;
+}
+
+.gallery-grid::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+/* Ảnh trong gallery */
+.gallery-grid img {
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+/* Hiệu ứng hover */
+.gallery-grid img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 768px) {
+  .gallery-grid img {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section__title {
+    font-size: 1.5rem;
+  }
+
+  .gallery-grid img {
+    width: 200px;
+    height: 300px;
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal.fade-left {
+  transform: translateX(-40px);
+}
+
+.reveal.fade-right {
+  transform: translateX(40px);
+}
+
+.reveal.fade-up {
+  transform: translateY(40px);
+}
+
+.reveal.fade-down {
+  transform: translateY(-40px);
+}

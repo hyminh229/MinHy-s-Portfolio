@@ -1,8 +1,73 @@
+/* Hiệu ứng nền mờ nhẹ cho toàn site + tiện ích tuỳ chọn
+  - Dùng gradient rất nhạt và một animation chuyển động chậm (tuỳ chọn)
+  - Hiệu ứng được giữ rất nhẹ để không làm loãng nội dung chính.
+  - Dùng lớp `.bg-fade` trên một section/container nếu muốn thêm lớp họa tiết nhẹ. */
+
+:root {
+  --bg-top: #fbfdff;
+  /* rất nhạt */
+  --bg-bottom: #eef4fb;
+  /* tông mát, nhạt */
+  --bg-accent-1: rgba(63, 61, 153, 0.06);
+  /* wash tím - tăng độ đậm */
+  --bg-accent-2: rgba(20, 184, 166, 0.04);
+  /* wash xanh - tăng độ đậm */
+  --bg-animation-duration: 18s;
+  /* Mặc định cho bề mặt / thẻ: để trong suốt để nền có thể hiện ra */
+  --card: transparent;
+  --radius: 12px;
+  --shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
+}
 
 body {
-  background: #ffffff;
-  color: #0e1726;
-  font-family: Inter, system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  /* Nền chính: gradient rất nhạt + họa tiết chấm rất thưa và rất mờ */
+  /* Họa tiết chấm: sử dụng biến accent và tăng kích thước chấm, giảm background-size để đậm hơn */
+  background-image:
+    radial-gradient(var(--bg-accent-1) 2px, transparent 2px),
+    linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+  background-repeat: repeat, no-repeat;
+  /* Kích thước họa tiết chấm: nhỏ hơn để dày hơn (mật độ cao hơn) */
+  background-size: 60px 60px, auto;
+  background-attachment: fixed;
+}
+
+/* animation dịch chuyển rất chậm (rất nhẹ) */
+@keyframes site-bg-slow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Bật animation nền nếu muốn (tuỳ chọn) */
+body.animate-bg {
+  animation: site-bg-slow var(--bg-animation-duration) ease-in-out infinite;
+}
+
+.bg-fade {
+  position: relative;
+  overflow: visible;
+  /* cho phép các lớp giả hiển thị */
+}
+
+/* Lớp tiện ích: thêm các wash họa tiết bên trong section (không làm phiền nội dung) */
+.bg-fade::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle at 10% 10%, var(--bg-accent-1), transparent 18%),
+    radial-gradient(circle at 90% 90%, var(--bg-accent-2), transparent 22%);
+  opacity: 1;
+  z-index: -1;
+  /* nằm phía sau nội dung của section */
 }
 
 /* Topbar */
@@ -57,6 +122,6 @@ body {
 }
 
 .alt {
-  background: #ffffff;
+  /* Giữ các section xen kẽ nhưng để nền hiện ra; có thể dùng .bg-fade để thêm họa tiết */
+  background: transparent;
 }
-

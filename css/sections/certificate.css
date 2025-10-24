@@ -22,7 +22,7 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, .12);
 }
 
-/* Mobile */
+/* Thiết bị di động */
 @media (max-width: 640px) {
   .certificate-section {
     flex-direction: column;

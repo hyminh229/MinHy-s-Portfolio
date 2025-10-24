@@ -1,4 +1,4 @@
-/* Mobile-first tweaks */
+/* Tinh chỉnh ưu tiên thiết bị di động (mobile-first) */
 @media (max-width: 980px) {
     .grid {
         grid-template-columns: repeat(2, 1fr)
